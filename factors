@@ -20,7 +20,5 @@ while(1):
             
             break
         factorize(line)
-        
-        
-
+ 
 	
