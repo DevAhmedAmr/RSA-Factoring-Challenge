@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 
 		num = _atoi(line);
 
-		while (1)
+		while (i < num)
 		{
 			if (num % i == 0)
 			{
@@ -30,6 +30,10 @@ int main(int argc, char **argv)
 			i++;
 		}
 	};
+
+	free(line);
+	line = NULL;
+	fclose(file);
 }
 unsigned long int _atoi(char *line)
 {
