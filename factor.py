@@ -8,7 +8,7 @@ def factorize(line):
     while(i < num):
         
         if num % i == 0:
-            print(f"{num:d}={int(num/i):d}*{i:d}")
+            print("{}={}*{}".format(num, int(num/i), i))
             break
         i=i+1
 
