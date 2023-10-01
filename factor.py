@@ -8,7 +8,7 @@ def factorize(line):
     while(i < num):
         
         if num % i == 0:
-            print(f"{num:d}={int(num/i):d}*{i:d}",)
+            print(f"{num:d}={int(num/i):d}*{i:d}")
             break
         i=i+1
 
@@ -16,10 +16,9 @@ def factorize(line):
 while(1):
     
         line = text_file.readline()
-        
         if  line == "":
+            
             break
-        
         factorize(line)
         
         
