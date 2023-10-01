@@ -3,55 +3,31 @@
 #include <string.h>
 #include <unistd.h>
 int factorize(char *buffer);
-
-unsigned long int _atoi(char *line);
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-	char *line = NULL;
+	FILE *fptr;
+	size_t count;
+	ssize_t line;
+	char *buffer = NULL;
 
-	(void)argc;
-	size_t size = 0;
-	FILE *file = fopen(argv[1], "r");
-
-	while (getline(&line, &size, file) != -1)
+	if (argc != 2)
 	{
-		u_int32_t num, i = 2;
-
-		if (line[strlen(line) - 1] == '\n')
-			line[strlen(line) - 1] = '\0';
-
-		num = _atoi(line);
-
-		factorize(line);
-	};
-
-	free(line);
-	line = NULL;
-	fclose(file);
+		fprintf(stderr, "Usage: factor <filename>\n");
+		exit(EXIT_FAILURE);
+	}
+	fptr = fopen(argv[1], "r");
+	if (fptr == NULL)
+	{
+		fprintf(stderr, "Error: can't open file %s\n", argv[1]);
+		exit(EXIT_FAILURE);
+	}
+	while ((line = getline(&buffer, &count, fptr)) != -1)
+	{
+		factorize(buffer);
+	}
+	return (0);
 }
-unsigned long int _atoi(char *line)
-{
-	unsigned long int sum = 0, i = 0;
-	int is_negative = 0;
 
-	if (line[0] == '-')
-	{
-		is_negative = 1;
-		i = 1;
-	}
-
-	for (; i < strlen(line); i++)
-	{
-		sum = sum * 10;
-		sum += line[i] - 48;
-	}
-
-	if (is_negative)
-	{
-		sum = sum * -1;
-	}
-	return sum;
-}
 int factorize(char *buffer)
 {
 
